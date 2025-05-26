@@ -11,7 +11,7 @@ import os
 from utils import rules
 
 # 每日签到
-setu = on_regex("^setu$", priority=5, rule=Rule(rules.both), block=True)
+setu = on_regex("^(setu)|(色图)|(再来一张)|(Setu)|(SETU)$", priority=5, rule=Rule(rules.both), block=True)
 @setu.handle()
 async def setu_handle(bot: Bot, event: Event):
     id = await random_setu()
