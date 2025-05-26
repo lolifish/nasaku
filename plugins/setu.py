@@ -29,7 +29,6 @@ async def random_setu():
         f.write(response.content)
 
     # 提取图像id
-    print(response.url)
     id = re.findall(r"bjh/(.+)\.", str(response.url))[0]
     return id
 
