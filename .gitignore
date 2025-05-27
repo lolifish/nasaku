@@ -1,4 +1,10 @@
-plugins/luxun
+# 隐私信息
 config.yaml
+token.txt
+
+# 缓存文件
 data/cache
+__pycache__
+
+# 调试文件
 test.py
