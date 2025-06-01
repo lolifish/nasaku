@@ -1,0 +1,14 @@
+name: "河边垂钓-渔获"
+weight_group: 100
+weight_event: 30
+
+results:
+  - skill: null 
+    text: "和奈咲酱在小河里垂钓\n...钓到鱼了！" 
+    rewards: 
+      fish: 5
+
+  - skill: "打窝"
+    text: "和奈咲酱在小河里垂钓\n...钓到鱼了！\n提前打窝很有帮助呢！" 
+    rewards: 
+      fish: 8

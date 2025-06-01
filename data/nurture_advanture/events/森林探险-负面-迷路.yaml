@@ -1,0 +1,9 @@
+name: "森林探险-迷路"
+weight_group: 100
+weight_event: 10
+
+results:
+  - skill: null 
+    text: "和奈咲酱去森林里探险！\n...结果居然迷路了" 
+    rewards: 
+      fish: 1

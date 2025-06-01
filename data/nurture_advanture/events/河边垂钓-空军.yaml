@@ -1,0 +1,9 @@
+name: "河边垂钓-空军"
+weight_group: 100
+weight_event: 20
+
+results:
+  - skill: null 
+    text: "和奈咲酱在小河里垂钓\n...好像空军了" 
+    rewards: 
+      fish: 1

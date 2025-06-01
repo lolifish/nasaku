@@ -1,0 +1,9 @@
+name: "森林探险-摔跤"
+weight_group: 100
+weight_event: 10
+
+results:
+  - skill: null 
+    text: "和奈咲酱去森林里探险！\n结果摔了一跤...\n好疼！" 
+    rewards: 
+      fish: 1
