@@ -29,8 +29,8 @@ def get_advanture(usr_skills: list[str]) -> AdvantureResult:
             break
     
     # 根据技能确定奖励
+    result = AdvantureResult()
     for result_info in event["results"]:
-        result = AdvantureResult()
         if (not result_info["skill"]) or (result_info["skill"] in usr_skills):
             result.name = event["name"]
             result.text = result_info["text"]
