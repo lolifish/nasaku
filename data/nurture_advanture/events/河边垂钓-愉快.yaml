@@ -1,0 +1,9 @@
+name: "河边垂钓-愉快"
+weight: 30
+
+results:
+  - skill: null 
+    text: "和奈咲酱在小河里垂钓\n虽然钓到的鱼不算多，但是特别开心呢！" 
+    rewards: 
+      fish: 3
+      imp: 1

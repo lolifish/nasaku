@@ -17,8 +17,7 @@ async def chat_handle(bot: Bot, event: Event):
     db = UsrDB()
     data = db.get(event.user_id)
     if not data:
-        db.create(event.user_id)
-    data = db.get(event.user_id)
+        await chat.finish("奈咲酱有些饿了喵呜...")
 
     # 尝试扣除一个鱼干
     if data.fish:

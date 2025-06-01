@@ -3,10 +3,10 @@ from nonebot.rule import Rule
 from nonebot.adapters.onebot.v11 import Bot
 from nonebot.adapters.onebot.v11.event import Event
 
-from datetime import datetime
-
 from utils.UsrDB import UsrDB
 from utils import rules
+
+from datetime import datetime
 
 # 每日签到
 signin = on_regex("^签到$", priority=5, rule=Rule(rules.both), block=True)
@@ -28,20 +28,3 @@ async def signin_handle(bot: Bot, event: Event):
     db.save(data)
     db.commit()
     await signin.finish(f"签到成功！\n给主人{reward}枚小鱼干~")
-
-
-# 查询属性
-backpack = on_regex("^属性$", priority=5, rule=Rule(rules.both), block=True)
-@backpack.handle()
-async def backpack_handle(bot: Bot, event: Event):
-    db = UsrDB()
-    data = db.get(event.user_id)
-    if not data:
-        await backpack.finish("主人还没有小鱼干...试试看签到吧！")
-
-    text = '┌' + ' '*40 + '┐'
-    text += f"\n小鱼干: {data.fish}枚"
-    text += '\n└' + ' '*40 + '┘'
-
-    await backpack.finish(text)
-    
