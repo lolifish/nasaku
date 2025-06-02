@@ -39,8 +39,8 @@ async def backpack_handle(bot: Bot, event: Event):
         data = db.get(event.user_id)
 
     text = '┌' + ' '*40 + '┐'
-    text += f"\n好感度：{data.imp}"
-    text += f"\n小鱼干: {data.fish}枚"
+    text += f"\n    好感度：{data.imp}"
+    text += f"\n    小鱼干: {data.fish}枚"
     text += '\n└' + ' '*40 + '┘'
 
     await backpack.finish(text)

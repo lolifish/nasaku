@@ -49,4 +49,5 @@ async def signin_handle(bot: Bot, event: MessageEvent):
     msg += f"--- {result.name} ---\n"
     msg += result.text + "\n"
     msg += f"({reward_text})"
+    await signin.finish(msg)
 
