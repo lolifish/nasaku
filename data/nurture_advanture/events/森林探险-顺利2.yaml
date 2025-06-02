@@ -1,0 +1,8 @@
+name: "森林探险-顺利"
+weight: 40
+
+results:
+  - skill: null 
+    text: "和奈咲酱去森林里探险！\n...抓到了蝴蝶，好开心！" 
+    rewards: 
+      imp: 3
