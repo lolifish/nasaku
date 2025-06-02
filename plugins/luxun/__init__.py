@@ -1,6 +1,6 @@
 from nonebot import on_regex
 from nonebot.adapters.onebot.v11 import Bot, Event
-from nonebot.params import State
+from nonebot.params import RegexGroup
 from nonebot.typing import T_State
 from nonebot.adapters.onebot.v11.message import MessageSegment as MS
 
@@ -14,12 +14,12 @@ luxun_say = on_regex(
     rule = rules.both, priority=5, block=True
 )
 @luxun_say.handle()
-async def luxun_say_handle(bot: Bot, event: Event, state:T_State=State()):
-    result = state["_matched_groups"]
-    if not result[0]:
+async def luxun_say_handle(bot: Bot, event: Event, matched: tuple = RegexGroup()):
+    result = matched[0]
+    if not result:
         text = "请像这样使用 “鲁迅说:奈咲酱赛高”"
     else:
-        text = result[0]
+        text = result
         # 处理字数限制
         if len(text) > 20:
             await luxun_say.finish("话太长啦，鲁迅说不完！")
