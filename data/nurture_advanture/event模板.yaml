@@ -13,7 +13,7 @@ results:
       fish: 5
       imp: 1
       
-  - skill: "冒险套组"
+  - skill: "冒险"
     text: "进行了一次冒险，准备充分，收获非常丰富！"
     rewards:
       fish: 10

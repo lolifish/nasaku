@@ -1,0 +1,8 @@
+name: "森林探险-顺利"
+weight: 40
+
+results:
+  - skill: null 
+    text: "和奈咲酱去森林里探险！\n采到很多蘑菇，换成了小鱼干~" 
+    rewards: 
+      fish: 5

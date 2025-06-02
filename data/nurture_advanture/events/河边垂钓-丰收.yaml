@@ -5,9 +5,9 @@ results:
   - skill: null 
     text: "和奈咲酱在小河里垂钓\n大丰收！钓到了好多鱼！" 
     rewards: 
-      fish: 8
+      fish: 10
 
   - skill: "打窝"
     text: "和奈咲酱在小河里垂钓\n大丰收！钓到了好多鱼！\n这样打窝好像特别有效！" 
     rewards: 
-      fish: 10
+      fish: 12
