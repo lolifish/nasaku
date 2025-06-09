@@ -1,5 +1,6 @@
 name: "河边垂钓-渔获"
-weight: 90
+weight_group: 100
+weight_event: 30
 
 results:
   - skill: null 
