@@ -3,7 +3,7 @@ from nonebot.adapters.onebot.v11 import Bot
 from nonebot.rule import Rule
 from nonebot.adapters.onebot.v11.event import MessageEvent
 
-from utils.UsrDB import UsrDB
+from services.UsrDataService import UsrDataService
 from utils.rules import only_superuser
 
 command_list = on_command("command_list", priority=5, rule=Rule(only_superuser), block=True)
@@ -23,16 +23,9 @@ async def give_handle(bot: Bot, event: MessageEvent) :
     except:
         await give.finish("参数格式：/give user_id kind num")
     
-    db = UsrDB()
-    data = db.get(user)
-    if not data:
-        db.create(event.user_id)
-        data = db.get(event.user_id)
+    with UsrDataService(user) as user_data:
+        user_data.adjust_currency(kind, num, ignore_neg=True)
 
-    if kind=="fish":
-        data.fish += num
-    
-    db.save(data)
     await give.finish(f"成功给予{user} {num}个{kind}")
 
 
@@ -45,12 +38,7 @@ async def clean_chat_handle(bot: Bot, event: MessageEvent) :
     except:
         await give.finish("参数格式：/clean_chat user_id")
     
-    db = UsrDB()
-    data = db.get(user)
-    if not data:
-        db.create(event.user_id)
-        data = db.get(event.user_id)
+    with UsrDataService(user) as user_data:
+        user_data.edit_chat([])
 
-    data.chat = []
-    db.save(data)
     await clean_chat.finish(f"用户{user}的gemini记忆已清空")

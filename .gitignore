@@ -8,3 +8,6 @@ __pycache__
 
 # 调试文件
 test.py
+
+usr.db
+.vscode
