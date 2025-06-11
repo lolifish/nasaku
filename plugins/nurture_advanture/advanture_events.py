@@ -3,7 +3,7 @@ import os
 import random
 
 # 加载所有可用事件
-events_path = "./data/nurture_advanture/events"
+events_path = "./data/nurture/events"
 events_files = os.listdir(events_path)
 events = []
 
