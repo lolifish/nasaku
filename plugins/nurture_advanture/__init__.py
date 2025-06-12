@@ -12,7 +12,7 @@ from datetime import datetime
 from .advanture_events import get_advanture
 
 # 每日签到
-signin = on_regex("^(签到)|(冒险)|(探险)$", priority=5, rule=Rule(rules.both), block=True)
+signin = on_regex("^(签到|冒险|探险)$", priority=5, rule=Rule(rules.both), block=True)
 @signin.handle()
 async def signin_handle(bot: Bot, event: MessageEvent):
     db = UsrDB()
