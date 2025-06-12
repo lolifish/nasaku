@@ -2,19 +2,13 @@ from datetime import datetime
 import sqlite3
 import json
 
+from models.UsrData import UsrData
+
 dbpath = "./data/db/usr.db"
 timeformat = "%Y-%m-%d"
 
 conn = sqlite3.connect(dbpath)
 cur = conn.cursor()
-
-class UsrData():
-	id = None
-	imp = None
-	fish = None
-	signin = None
-	tags = []
-	chat = {}
 
 class UsrDB():
 
@@ -59,4 +53,4 @@ class UsrDB():
 if __name__ == "__main__":
 	#data = UsrDB().create(2571610591)
 	data = UsrDB().get(2571610591)
-	print(data)
+	print(data.fish)
