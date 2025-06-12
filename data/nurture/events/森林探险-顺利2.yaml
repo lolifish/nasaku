@@ -1,5 +1,6 @@
 name: "森林探险-顺利"
-weight: 40
+weight_group: 100
+weight_event: 20
 
 results:
   - skill: null 

@@ -3,7 +3,7 @@ import os
 import random
 
 # 加载所有可用事件
-events_path = "./data/nurture_advanture/events"
+events_path = "./data/nurture/events"
 events_files = os.listdir(events_path)
 events = []
 
@@ -25,7 +25,7 @@ def get_advanture(usr_skills: list[str]) -> AdvantureResult:
     while True:
         event = random.choice(events)
         # 权重随机
-        if random.randint(1, 100) <= event["weight"]:
+        if (random.randint(1, 100) <= event["weight_group"]) and (random.randint(1, 100) <= event["weight_event"]):
             break
     
     # 根据技能确定奖励
