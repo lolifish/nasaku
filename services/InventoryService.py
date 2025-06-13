@@ -19,6 +19,12 @@ class InventoryService():
         self.user_data_service = user_data_service
         self._maybe_commit = commit_hook or (lambda: None)    # 支持回调UsrDataService的_maybe_commit
     
+    def name_cn(self, item_name) -> Optional[str]:
+        if not item_name in item_list:
+            return None
+        else:
+            return item_map[item_name].name_cn
+
     def get_all(self) -> dict[str, BaseItem]:
         if not self.user_data:
             return {}

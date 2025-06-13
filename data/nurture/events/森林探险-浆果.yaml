@@ -1,0 +1,9 @@
+name: "森林探险-发现浆果！"
+weight_group: 50
+weight_event: 20
+
+results:
+  - skill: null 
+    text: "和奈咲酱去森林里探险！\n找到了味道很甜的浆果！" 
+    rewards: 
+      Berry: 1

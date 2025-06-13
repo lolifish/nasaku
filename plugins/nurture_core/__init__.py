@@ -36,6 +36,11 @@ async def backpack_handle(bot: Bot, event: MessageEvent):
         text = '┌' + ' '*40 + '┐'
         text += f"\n    好感度：{user_data.get_imp()}"
         text += f"\n    小鱼干: {user_data.get_fish()}枚"
+        inventory_content = ", ".join([f"{key}*{value}" for key, value in user_data.inventory.get_all()])
+        if inventory_content:
+            text += f"\n    背包: {inventory_content}"
+        else:
+            text += "\n    背包: 空"
         text += '\n└' + ' '*40 + '┘'
 
     await backpack.finish(text)
