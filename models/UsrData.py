@@ -6,6 +6,6 @@ class UsrData():
 		self.imp: int = None
 		self.fish: int = None
 		self.signin: date = None
-		self.tags: list = []
+		self.inventory: dict = {}
 		self.chat: dict = []
 	
