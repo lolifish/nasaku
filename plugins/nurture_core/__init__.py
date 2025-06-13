@@ -1,9 +1,9 @@
 from nonebot import on_regex
 from nonebot.rule import Rule
 from nonebot.adapters.onebot.v11 import Bot
-from nonebot.adapters.onebot.v11.event import Event
+from nonebot.adapters.onebot.v11.event import MessageEvent
 
-from utils.UsrDB import UsrDB
+from services.UsrDataService import UsrDataService
 from utils import rules
 
 ## 每日签到
@@ -31,17 +31,12 @@ from utils import rules
 # 查询属性
 backpack = on_regex("^属性$", priority=5, rule=Rule(rules.both), block=True)
 @backpack.handle()
-async def backpack_handle(bot: Bot, event: Event):
-    db = UsrDB()
-    data = db.get(event.user_id)
-    if not data:
-        db.create(event.user_id)
-        data = db.get(event.user_id)
-
-    text = '┌' + ' '*40 + '┐'
-    text += f"\n    好感度：{data.imp}"
-    text += f"\n    小鱼干: {data.fish}枚"
-    text += '\n└' + ' '*40 + '┘'
+async def backpack_handle(bot: Bot, event: MessageEvent):
+    with UsrDataService(event.user_id) as user_data:
+        text = '┌' + ' '*40 + '┐'
+        text += f"\n    好感度：{user_data.get_imp()}"
+        text += f"\n    小鱼干: {user_data.get_fish()}枚"
+        text += '\n└' + ' '*40 + '┘'
 
     await backpack.finish(text)
     
