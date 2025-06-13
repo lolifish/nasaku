@@ -1,5 +1,6 @@
 from datetime import date
 
+from services.InventoryService import InventoryService
 from infra.UsrDB import UsrDB
 from models.UsrData import UsrData
 
@@ -22,6 +23,9 @@ class UsrDataService():
                 self.has_user = True
             else:
                 self.has_user = False
+
+        # 实例化InventoryService
+        self.inventory = InventoryService(self, self._maybe_commit)
 
     # 上下文，用于支持多次操作后再保存，节省性能
     def __enter__(self):
@@ -115,11 +119,12 @@ if __name__ == "__main__":
         print(ud.adjust_fish(5))
         print(ud.adjust_imp(-100000))
         print(data.fish, ud.get_fish())
-    print(data.fish, ud.get_fish())
 
     ud = UsrDataService(id)
     print(ud.get_chat())
-    print(ud.edit_chat([]))
-    print(ud.get_chat())
+
+    print(ud.inventory.get_all())
+    ud.inventory.add("Berry")
+    print(ud.inventory.get_all())
 
 

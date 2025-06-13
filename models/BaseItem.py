@@ -1,4 +1,10 @@
+from __future__ import annotations
+from typing import Optional, TYPE_CHECKING
 from abc import ABC, abstractmethod
+
+if TYPE_CHECKING:
+    from services.UsrDataService import UsrDataService
+
 
 allowed_tags = {
     "usable",       # 可使用
@@ -40,7 +46,7 @@ class BaseItem(ABC):
         """物品的英文名"""
         return self.name_en
 
-    def use(self, user_id: int) -> str | None:
+    def use(self, user_data_server: Optional["UsrDataService"] = None) -> str | None:
         """物品使用逻辑。返回使用消息，None表示不可用"""
         return None
 

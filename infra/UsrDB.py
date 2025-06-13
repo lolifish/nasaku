@@ -18,7 +18,7 @@ class UsrDB():
 
 	# 获取用户数据
 	def get(self, id:int) -> UsrData:
-		cur.execute("SELECT id,imp,fish,signin,tags,chat FROM base WHERE id=?", (id, ))
+		cur.execute("SELECT id,imp,fish,signin,inventory,chat FROM base WHERE id=?", (id, ))
 		d = cur.fetchone()
 		if not d:
 			return None
@@ -29,7 +29,7 @@ class UsrDB():
 			data.imp = d[1]
 			data.fish = d[2]
 			data.signin = datetime.strptime(d[3], timeformat).date()
-			data.tags = json.loads(d[4])
+			data.inventory = json.loads(d[4])
 			data.chat = json.loads(d[5])
 
 			return data
@@ -40,8 +40,8 @@ class UsrDB():
 			"imp": data.imp,
 			"fish": data.fish,
 			"signin": datetime.strftime(data.signin, timeformat),
-			"tags": json.dumps(data.tags),
 			"chat": json.dumps(data.chat),
+			"inventory": json.dumps(data.inventory)
 		}
 		for key, value in d.items():
 			cur.execute(f'UPDATE base SET {key} =? WHERE id =?', (value, data.id))
@@ -53,4 +53,4 @@ class UsrDB():
 if __name__ == "__main__":
 	#data = UsrDB().create(2571610591)
 	data = UsrDB().get(2571610591)
-	print(data.fish)
+	print(data.inventory)
