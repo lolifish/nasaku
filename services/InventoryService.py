@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import Optional, TYPE_CHECKING
+from random import choice
 
 if TYPE_CHECKING:
     from services.UsrDataService import UsrDataService
@@ -11,6 +12,9 @@ from models.BaseItem import BaseItem
 
 item_map = load_items_presets()
 item_list = set(item_map.keys())
+
+# cn->en反查
+name_cn_en = {item.name_cn: item.name_en for item in item_map.values()}
 
 class InventoryService():
     """物品服务类"""
@@ -24,6 +28,12 @@ class InventoryService():
             return None
         else:
             return item_map[item_name].name_cn
+    def name_en(self, item_name_cn) -> Optional[str]:
+        if not item_name_cn in name_cn_en.keys():
+            return None
+        else:
+            return name_cn_en[item_name_cn]
+
 
     def get_all(self) -> dict[str, BaseItem]:
         if not self.user_data:
@@ -70,18 +80,22 @@ class InventoryService():
             self._maybe_commit()
             return True
     
+
     def describe(self, item_name) -> Optional[str]:
         if not self.user_data:
             return None
         if not self.get(item_name):
             return None
         return item_map[item_name].describe
-    
+
+
     def use(self, item_name, remove_item=True) -> Optional[str]:
         if not self.user_data:
             return None
         if not self.get(item_name):
             return None
+        if not "usable" in item_map[item_name].tags:
+            return "这件物品无法使用"
         # 使用物品
         text = item_map[item_name].use(self.user_data_service)
         # 扣除
@@ -89,11 +103,26 @@ class InventoryService():
             self.remove(item_name, 1)
         return text
 
+    def gift(self, item_name) -> Optional[str]:
+        if not self.user_data:
+            return None
+        if not self.get(item_name):
+            return None
+        item = item_map[item_name]
+        if not "gift" in item.tags:
+            return "这件物品无法赠送"
+        # 移除物品
+        self.remove(item_name)
+        # 追加好感值
+        self.user_data_service.adjust_imp(item.gift_imp)
+        return choice(item.gift_replies)
+    
 
 if __name__ == "__main__":
     from services.UsrDataService import UsrDataService
     user_data_service = UsrDataService(2571610591)
     inventory = InventoryService(user_data_service)
+    print(inventory.get(None))
 
     print(inventory.get_all())
     print(inventory.add("Berry", 2))
