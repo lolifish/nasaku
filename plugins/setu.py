@@ -4,6 +4,7 @@ from nonebot.adapters.onebot.v11 import Bot
 from nonebot.adapters.onebot.v11.event import Event
 from nonebot.adapters.onebot.v11.message import MessageSegment as MS
 
+from random import choice
 import httpx
 import re
 import os
@@ -11,7 +12,7 @@ import os
 from utils import rules
 
 # 每日签到
-setu = on_regex("^(setu)|(色图)|(再来一张)|(Setu)|(SETU)$", priority=5, rule=Rule(rules.both), block=True)
+setu = on_regex("^(setu|色图|再来一张|Setu|SETU|不够色|不够涩)$", priority=5, rule=Rule(rules.both), block=True)
 @setu.handle()
 async def setu_handle(bot: Bot, event: Event):
     id = await random_setu()
@@ -19,8 +20,9 @@ async def setu_handle(bot: Bot, event: Event):
     await setu.finish(msg)
 
 
+urls = ["https://api.anosu.top/img"]
 async def random_setu():
-    url = "https://api.anosu.top/img"
+    url = choice(urls)
     headers = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"}
     async with httpx.AsyncClient(headers=headers) as client:
         response = await client.get(url, headers=headers, follow_redirects=True)

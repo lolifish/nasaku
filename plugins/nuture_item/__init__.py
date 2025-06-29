@@ -8,7 +8,7 @@ from services.UsrDataService import UsrDataService
 from utils import rules
 
 check_item = on_regex(
-    "^(?:查看|查看物品|检查|检查物品|check)\s*(.*)$", 
+    r"^(?:查看|查看物品|检查|检查物品|check)\s*(.*)$", 
     rule = rules.both, priority=5, block=True
 )
 @check_item.handle()
@@ -27,7 +27,7 @@ async def use_item_handle(bot: Bot, event: MessageEvent, matched: tuple = RegexG
 
 
 use_item = on_regex(
-    "^(?:使用|使用物品|use)\s*(.*)$", 
+    r"^(?:使用|使用物品|use)\s*(.*)$", 
     rule = rules.both, priority=5, block=True
 )
 @use_item.handle()
@@ -46,7 +46,7 @@ async def use_item_handle(bot: Bot, event: MessageEvent, matched: tuple = RegexG
 
 
 gift_item = on_regex(
-    "^(?:送礼物|赠送|gift)\s*(.*)$", 
+    r"^(?:送礼物|赠送|gift)\s*(.*)$", 
     rule = rules.both, priority=5, block=True
 )
 @gift_item.handle()

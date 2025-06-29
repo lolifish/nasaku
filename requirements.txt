@@ -1,4 +1,5 @@
-nonebot2
+nonebot2[fastapi]
+nonebot-adapter-onebot
 httpx
 openai
 pillow>=10.0
