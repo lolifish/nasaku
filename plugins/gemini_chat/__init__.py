@@ -7,6 +7,7 @@ from nonebot.adapters.onebot.v11 import MessageSegment as MS
 from .data_source import send_to_gemini, summary_chat
 
 from services.UsrDataService import UsrDataService
+from presets.imp_level import imp_level
 from utils import rules
 
 chat = on_message(priority=50, rule= to_me()&Rule(rules.both), block=False)
@@ -16,16 +17,16 @@ async def chat_handle(bot: Bot, event: MessageEvent):
     # 获取新的消息(限制50个字符)
     msg = str(event.get_message())
     if len(msg)>50:
-        return
+        await chat.finish()
     
     # 加载用户数据
-    with UsrDataService(event.user_id) as user_data:
+    with UsrDataService(event.user_id, auto_create=True) as user_data:
         # 扣除一个鱼干
-        if not user_data.adjust_fish(-1):
-            await chat.finish("奈咲酱有些饿了喵呜...\n（得有小鱼干才能聊天呢）")
+        #if not user_data.adjust_fish(-1):
+        #    await chat.finish("奈咲酱有些饿了喵呜...\n（得有小鱼干才能聊天呢）")
     
         # 发送请求
-        new_chats = await send_to_gemini(msg, user_data.get_chat())
+        new_chats = await send_to_gemini(msg, user_data.get_chat(), imp_level(user_data.get_imp()))
     
         # 生成回应消息
         reply = MS.text("")

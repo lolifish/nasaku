@@ -44,11 +44,11 @@ client = AsyncOpenAI(
 
 )
 
-async def send_to_gemini(msg:str, history:list) -> list:
+async def send_to_gemini(msg:str, history:list, imp_level:str) -> list:
     # 系统设定
     sys_msg = [{"role": "system", "content": prompt_sys}]
     # 加上新的消息，以及时间信息
-    msg = datetime.strftime(datetime.now(), "(%Y-%m-%d %H:%M)") + msg
+    msg = f"({imp_level})" + datetime.strftime(datetime.now(), "(%Y-%m-%d %H:%M)") + msg
     history.append({"role": "user", "content": msg})
 
     # 发送请求
