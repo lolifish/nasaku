@@ -16,7 +16,7 @@ async def use_item_handle(bot: Bot, event: MessageEvent, matched: tuple = RegexG
     item_name_cn = matched[0]
     if not item_name_cn:
         await check_item.finish("请像这样使用指令：查看 浆果蛋糕")
-    user_data_s = UsrDataService(MessageEvent.user_id)
+    user_data_s = UsrDataService(event.user_id)
     item_name = user_data_s.inventory.name_en(item_name_cn)
 
     text = user_data_s.inventory.describe(item_name)
@@ -35,7 +35,7 @@ async def use_item_handle(bot: Bot, event: MessageEvent, matched: tuple = RegexG
     item_name_cn = matched[0]
     if not item_name_cn:
         await use_item.finish("请像这样使用指令：使用 浆果蛋糕")
-    user_data_s = UsrDataService(MessageEvent.user_id)
+    user_data_s = UsrDataService(event.user_id)
     item_name = user_data_s.inventory.name_en(item_name_cn)
     # 使用
     text = user_data_s.inventory.use(item_name)
@@ -54,7 +54,7 @@ async def use_item_handle(bot: Bot, event: MessageEvent, matched: tuple = RegexG
     item_name_cn = matched[0]
     if not item_name_cn:
         await gift_item.finish("请像这样使用指令：送礼物 浆果蛋糕")
-    user_data_s = UsrDataService(MessageEvent.user_id)
+    user_data_s = UsrDataService(event.user_id)
     item_name = user_data_s.inventory.name_en(item_name_cn)
     # 使用
     text = user_data_s.inventory.gift(item_name)

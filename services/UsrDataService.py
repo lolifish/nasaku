@@ -9,7 +9,7 @@ db = UsrDB()
 class UsrDataService():
     """用户数据服务类"""
     def __init__(self, user_id, auto_create=False):
-        self.auto_commit = False
+        self.auto_commit = True
         self.has_user = False
         self.user_id = user_id
         self.user_data = db.get(user_id)

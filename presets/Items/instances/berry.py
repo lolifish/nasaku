@@ -7,7 +7,7 @@ class Berry(BaseItem):
     tags = {"gift", "material", "tradable"}
 
     gift_imp = 1
-    gift_replys = [
+    gift_replies = [
         "是甜甜的浆果喵？很美味呢，好好吃，谢谢主人！",
         "喵~奈咲酱很喜欢这个浆果的香气，谢谢主人啦喵~"
         "喵呜！好甜的浆果~做成蛋糕的话说不定会更美味呢！",
