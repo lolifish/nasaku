@@ -4,6 +4,7 @@ from nonebot.adapters.onebot.v11 import Bot
 from nonebot.adapters.onebot.v11.event import MessageEvent
 
 from services.UsrDataService import UsrDataService
+from presets.imp_level import imp_level
 from utils import rules
 
 ## 每日签到
@@ -29,12 +30,13 @@ from utils import rules
 
 
 # 查询属性
-backpack = on_regex("^属性$", priority=5, rule=Rule(rules.both), block=True)
+backpack = on_regex("^(?:属性|背包)$", priority=5, rule=Rule(rules.both), block=True)
 @backpack.handle()
 async def backpack_handle(bot: Bot, event: MessageEvent):
     with UsrDataService(event.user_id) as user_data:
+        imp = user_data.get_imp()
         text = '┌' + ' '*40 + '┐'
-        text += f"\n    好感度：{user_data.get_imp()}"
+        text += f"\n    好感度：{imp_level(imp)}({imp})"
         text += f"\n    小鱼干: {user_data.get_fish()}枚"
         inventory_content = ", ".join([f"{user_data.inventory.name_cn(key)}*{value}" for key, value in user_data.inventory.get_all().items()])
         if inventory_content:
