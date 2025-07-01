@@ -1,0 +1,9 @@
+name: "地牢探险-宝箱怪"
+weight_group: 50
+weight_event: 10
+
+results:
+  - skill: null 
+    text: "和奈咲酱勇闯地牢...\n发现了一个宝箱！\n结果是宝箱怪（" 
+    rewards: 
+      fish: 1

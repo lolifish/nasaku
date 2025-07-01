@@ -1,0 +1,9 @@
+name: "地牢探险-顺利"
+weight_group: 50
+weight_event: 30
+
+results:
+  - skill: null 
+    text: "和奈咲酱勇闯地牢...\n战胜了很多怪物！收获颇丰" 
+    rewards: 
+      fish: 5

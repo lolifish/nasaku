@@ -1,0 +1,9 @@
+name: "地牢探险-惨败"
+weight_group: 50
+weight_event: 10
+
+results:
+  - skill: null 
+    text: "和奈咲酱勇闯地牢...\n被史莱姆打败了（" 
+    rewards: 
+      fish: 1

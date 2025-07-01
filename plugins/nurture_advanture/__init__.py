@@ -31,6 +31,10 @@ async def signin_handle(bot: Bot, event: MessageEvent):
             elif key == "imp":
                 user_data.adjust_imp(value)
                 reward_text.append(f"好感度+{value}")
+            else:
+                # 物品奖励
+                user_data.inventory.add(key, value)
+                reward_text.append(f"{user_data.inventory.name_cn(key)}+{value}")
 
         # 记录签到时间
         user_data.edit_signin(datetime.now().date()) 
@@ -46,4 +50,3 @@ async def signin_handle(bot: Bot, event: MessageEvent):
     msg += result.text + "\n"
     msg += f"({reward_text})"
     await signin.finish(msg)
-
