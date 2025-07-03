@@ -27,10 +27,12 @@ async def give_handle(bot: Bot, event: MessageEvent) :
 
     # 给予物品
     with UsrDataService(user) as user_data:
-        if kind in item_list:
-            user_data.inventory.add(kind, num)
+        if user_data.inventory.name_en(kind) in item_list:
+            user_data.inventory.add(user_data.inventory.name_en(kind), num)
+            await give.finish("success")
         else:
             user_data.adjust_currency(kind, num, ignore_neg=True)
+            await give.finish("success")
 
 
 clean_chat = on_command("clean_chat", priority=5, rule=Rule(only_superuser), block=True)
