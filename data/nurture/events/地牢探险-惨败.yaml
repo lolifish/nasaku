@@ -1,6 +1,6 @@
 name: "地牢探险-惨败"
 weight_group: 50
-weight_event: 10
+weight_event: 30
 
 results:
   - skill: null 

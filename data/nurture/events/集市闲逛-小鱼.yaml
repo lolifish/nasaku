@@ -1,0 +1,11 @@
+name: "集市闲逛-小鱼"
+weight_group: 50
+weight_event: 30
+
+results:
+  - skill: null 
+    text: "和奈咲酱在集市上逛了一会儿...\n路过一家卖鱼的小贩~\n老板送给我们一条小鱼！" 
+    rewards: 
+      fish: 1
+      imp: 1
+      

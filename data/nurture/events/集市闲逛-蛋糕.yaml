@@ -1,0 +1,10 @@
+name: "街道闲逛-蛋糕"
+weight_group: 50
+weight_event: 10
+
+results:
+  - skill: null 
+    text: "和奈咲酱在街上逛了一会儿...\n买到了香气扑鼻的香草蛋糕！" 
+    rewards: 
+      cake_spice: 1
+      

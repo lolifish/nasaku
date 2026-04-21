@@ -1,0 +1,9 @@
+name: "街道闲逛-开心"
+weight_group: 50
+weight_event: 100
+
+results:
+  - skill: null 
+    text: "和奈咲酱在街上逛了一会儿...\n路边的面包好香！" 
+    rewards: 
+      imp: 1
